@@ -1,26 +1,258 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Warm editorial palette — light-committed, no dark mode */
+  --color-paper: #fdfcfa;
+  --color-surface: #f4f1ec;
+  --color-surface-2: #ebe6dd;
+  --color-ink: #1a1917;
+  --color-ink-soft: #3d3a35;
+  --color-muted: #6b6862;
+  --color-line: #e4dfd6;
+  --color-clay: #a94d2e;
+  --color-clay-soft: #c9714f;
+  --color-clay-wash: #f7ede8;
+
+  --font-display: var(--font-instrument-serif), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --text-display: 4.5rem;
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.025em;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  ::selection {
+    background-color: var(--color-clay);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  /* Serif display type — used only for large headings */
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* Small uppercase label used above section headings */
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /*
+   * Quiet rise-in on scroll, applied by <Reveal>.
+   *
+   * The hidden starting state only exists where scripting is enabled — the
+   * IntersectionObserver that reveals it needs JS to run. With JS off (or in a
+   * browser without `scripting`, where the block is simply ignored) content
+   * renders fully visible rather than staying at opacity:0 forever.
+   */
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (scripting: enabled) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 0.7s var(--ease-out-soft),
+        transform 0.7s var(--ease-out-soft);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Article body — styles the HTML produced from Markdown in            */
+/* content/insights/. Kept hand-written rather than pulling in the     */
+/* typography plugin, so the editorial rhythm matches the rest.        */
+/* ------------------------------------------------------------------ */
+
+.article {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--color-ink-soft);
+}
+
+.article > * + * {
+  margin-top: 1.5rem;
+}
+
+.article h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.article h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  margin-top: 2.5rem;
+}
+
+.article a {
+  color: var(--color-clay);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.article a:hover {
+  color: var(--color-ink);
+}
+
+.article strong {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.article ul,
+.article ol {
+  padding-left: 1.5rem;
+}
+
+.article ul {
+  list-style: disc;
+}
+
+.article ol {
+  list-style: decimal;
+}
+
+.article li + li {
+  margin-top: 0.625rem;
+}
+
+.article li::marker {
+  color: var(--color-clay);
+}
+
+.article code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 0.875em;
+  background-color: var(--color-surface-2);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  color: var(--color-ink);
+}
+
+.article pre {
+  background-color: var(--color-ink);
+  color: #ece8e1;
+  padding: 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.article pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.article blockquote {
+  border-left: 2px solid var(--color-clay);
+  padding-left: 1.5rem;
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+.article hr {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  margin-top: 3rem;
+}
+
+.article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.article th,
+.article td {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.75rem 1rem 0.75rem 0;
+  text-align: left;
+}
+
+.article th {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+/* Tables must scroll inside themselves, never force the page sideways.
+   lib/insights.ts wraps every <table> in this container. */
+.article .table-wrap {
+  overflow-x: auto;
+}
+
+.article .table-wrap table {
+  min-width: 32rem;
 }
