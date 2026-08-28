@@ -1,0 +1,18 @@
+# Keep line endings identical on Windows and Linux. Without this, a checkout on
+# Windows can introduce CRLF that then shows up as a whole-file diff on Ubuntu.
+* text=auto eol=lf
+
+# Binary assets: never touch these.
+*.ico binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
+
+# Generated; keep it out of diffs and merges.
+package-lock.json -diff linguist-generated

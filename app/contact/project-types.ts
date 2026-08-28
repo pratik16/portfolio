@@ -12,6 +12,7 @@ export const PROJECT_TYPES = [
   "Cloud, AWS or DevOps",
   "Technical audit or second opinion",
   "Ongoing engineering capacity",
+  "Dedicated engineers / team extension",
   "Something else",
 ] as const;
 

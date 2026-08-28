@@ -10,10 +10,14 @@ export const PORTRAIT_SRC = "/images/pratik/pratik-vanol.jpg";
 
 export function Portrait({
   className = "",
-  priority = false,
+  preload = false,
 }: {
   className?: string;
-  priority?: boolean;
+  /**
+   * Preload as the LCP image. Next 16 deprecated `priority` in favour of this.
+   * Only set it on one image per page.
+   */
+  preload?: boolean;
 }) {
   const hasPhoto = publicFileExists(PORTRAIT_SRC);
 
@@ -26,7 +30,7 @@ export function Portrait({
           src={PORTRAIT_SRC}
           alt={`${site.name}, ${site.role}`}
           fill
-          priority={priority}
+          preload={preload}
           sizes="(max-width: 1024px) 100vw, 420px"
           className="object-cover"
         />

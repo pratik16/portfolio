@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getFeaturedCaseStudies } from "@/lib/data/case-studies";
 import { services } from "@/lib/data/services";
-import { deliveryModel, differentiators, problems } from "@/lib/data/home";
+import { deliveryModel, differentiators, offshorePoints, problems } from "@/lib/data/home";
 import { site } from "@/lib/data/site";
 import {
   ArrowLink,
@@ -34,43 +34,70 @@ export default function HomePage() {
       {/* Hero                                                              */}
       {/* ---------------------------------------------------------------- */}
       <Container>
-        <div className="py-20 sm:py-28 lg:py-36">
-          <Reveal>
-            <p className="eyebrow">
-              {site.role} · {site.location.country}
-            </p>
-          </Reveal>
+        <div className="py-20 sm:py-28 lg:py-32">
+          <div className="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-16">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <p className="eyebrow">
+                  {site.role} · {site.location.country}
+                </p>
+              </Reveal>
 
-          <Reveal delay={80}>
-            <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
-              Software engineering and technology consulting for Australian businesses
-            </h1>
-          </Reveal>
+              <Reveal delay={80}>
+                {/* Capped at 6xl rather than 7xl: the portrait column now takes
+                    five of twelve, and 7xl wraps to five ragged lines in what
+                    is left. */}
+                <h1 className="mt-6 font-display text-5xl leading-[1.05] sm:text-6xl">
+                  Software engineering and technology consulting for Australian businesses
+                </h1>
+              </Reveal>
 
-          <Reveal delay={140}>
-            <p className="mt-8 font-display text-2xl text-clay sm:text-3xl">
-              {site.shortTagline}
-            </p>
-          </Reveal>
+              <Reveal delay={140}>
+                <p className="mt-8 font-display text-2xl text-clay sm:text-3xl">
+                  {site.shortTagline}
+                </p>
+              </Reveal>
 
-          <Reveal delay={200}>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-              Sixteen years building, modernising and scaling software — backend systems,
-              APIs, cloud infrastructure and AI. You work directly with the engineer doing
-              the work, not an account manager between you and it.
-            </p>
-          </Reveal>
+              <Reveal delay={200}>
+                <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
+                  Sixteen years building, modernising and scaling software — backend systems,
+                  APIs, cloud infrastructure and AI. You work directly with the engineer doing
+                  the work, not an account manager between you and it.
+                </p>
+              </Reveal>
 
-          <Reveal delay={260}>
-            <div className="mt-12 flex flex-wrap items-center gap-4">
-              <ButtonLink href="/contact" size="lg">
-                Discuss a Project
-              </ButtonLink>
-              <ButtonLink href="/case-studies" variant="secondary" size="lg">
-                View case studies
-              </ButtonLink>
+              <Reveal delay={260}>
+                <div className="mt-12 flex flex-wrap items-center gap-4">
+                  <ButtonLink href="/contact" size="lg">
+                    Discuss a Project
+                  </ButtonLink>
+                  <ButtonLink href="/case-studies" variant="secondary" size="lg">
+                    View case studies
+                  </ButtonLink>
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
+
+            {/* The face is the trust signal for a one-person consultancy, so it
+                sits above the fold rather than halfway down the page. Falls back
+                to a deliberate placeholder until the photo file exists — see
+                components/portrait.tsx. */}
+            <div className="lg:col-span-5">
+              <Reveal delay={120}>
+                <Portrait preload className="max-w-[20rem] lg:ml-auto lg:max-w-[22rem]" />
+              </Reveal>
+              <Reveal delay={180}>
+                <div className="mt-6 max-w-[20rem] border-t border-line pt-6 lg:ml-auto lg:max-w-[22rem]">
+                  <p className="font-medium">{site.name}</p>
+                  <p className="mt-1 text-sm text-muted">{site.role}</p>
+                  <p className="mt-1 text-sm text-muted">
+                    {site.location.city}, {site.location.regionCode} · Working across{" "}
+                    {site.location.country}
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </Container>
 
@@ -225,7 +252,7 @@ export default function HomePage() {
       </Section>
 
       {/* ---------------------------------------------------------------- */}
-      {/* Delivery model                                                    */}
+      {/* Delivery model — local accountability, offshore capacity          */}
       {/* ---------------------------------------------------------------- */}
       <Section bordered>
         <Container>
@@ -250,6 +277,17 @@ export default function HomePage() {
                 </div>
               </Reveal>
             </div>
+          </div>
+
+          <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
+            {offshorePoints.map((point, i) => (
+              <Reveal key={point.title} delay={i * 60} className="h-full">
+                <div className="h-full bg-paper p-8 sm:p-10">
+                  <h3 className="font-display text-2xl leading-tight">{point.title}</h3>
+                  <p className="mt-4 leading-relaxed text-muted">{point.body}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </Section>

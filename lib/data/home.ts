@@ -85,7 +85,7 @@ export const differentiators: Differentiator[] = [
   },
   {
     title: "It can scale when the project does",
-    body: "Small work is delivered personally. Larger work scales with trusted engineering capacity — while architecture, decisions and your point of contact stay exactly where they were.",
+    body: "Small work is delivered personally. Larger work is built by my own offshore engineering team, while architecture, decisions and your point of contact stay exactly where they were.",
   },
 ];
 
@@ -103,10 +103,45 @@ export const workedWith: string[] = [
 
 export const deliveryModel = {
   eyebrow: "How delivery works",
-  title: "Australian-led. Flexible engineering capacity.",
+  title: "One local contact. Engineering capacity that scales.",
   body: [
-    "You work directly with me on requirements, architecture, technical decisions and delivery leadership. That does not change at any project size — it is the whole point of hiring a senior engineer rather than an agency.",
-    "When a project needs more built in parallel than one person can build, delivery scales with trusted engineering resources I have worked with and led for years. You still have one technical person who understands your business, owns the architecture, and answers for the outcome.",
-    "The alternative — being sold to by one person, handed to another, and then to a team you never speak to — is how most software projects lose the thread between what the business needed and what got built.",
+    "You contract with me, here in Australia. I own requirements, architecture, technical decisions and delivery leadership, and that does not change at any project size — it is the whole point of hiring a senior engineer rather than an agency.",
+    "When a project needs more built in parallel than one person can build, it is delivered by my own offshore engineering team — people I have worked with and led for years, working to a specification I wrote, against code I review.",
+    "And if what you need is engineers rather than a project, that is available directly: dedicated developers working as an extension of your team, with me as the local technical contact who stays accountable for what they produce.",
+    "What this deliberately avoids is the handoff — sold to by one person, then passed to another who was in none of the earlier conversations. Offshore delivery fails when nobody senior owns the outcome, not because the work happens somewhere else. Here that person is local, named, and the one you already spoke to.",
+    "None of which means the team sits behind me. If you would rather deal with the engineers directly — a weekly call, a shared channel, whatever suits how you already work — that is entirely fine. The only thing that does not move is who answers for the result.",
   ],
 };
+
+export type OffshorePoint = {
+  title: string;
+  body: string;
+};
+
+/**
+ * Supports the delivery model section above. Deliberately qualitative on team
+ * size — the rest of this file only carries figures that are real and
+ * traceable, so no headcount goes in until there is a number worth standing on.
+ *
+ * TODO(pratik): the ABN itself is not printed anywhere on the site. Putting it
+ * in the footer is a cheap, checkable trust signal for Australian buyers —
+ * add it to `site` in lib/data/site.ts when you want it shown.
+ */
+export const offshorePoints: OffshorePoint[] = [
+  {
+    title: "One contract, one owner",
+    body: "You contract with an Australian business, ABN registered here in Geelong, invoiced in AUD. The delivery arrangement behind it is mine to manage, not yours to coordinate.",
+  },
+  {
+    title: "Engineers, not tickets",
+    body: "Dedicated developers who stay on your work long enough to actually understand it — briefed, reviewed and answered for by me.",
+  },
+  {
+    title: "Your working hours, not theirs",
+    body: "The team shifts to overlap your day where a project needs it, rather than leaving you a narrow window late in the afternoon to get anything answered.",
+  },
+  {
+    title: "Cost that matches the scope",
+    body: "Senior architecture where a wrong decision is expensive to reverse, and cost-effective delivery capacity where the work is volume.",
+  },
+];

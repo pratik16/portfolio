@@ -71,7 +71,7 @@ export default function AboutPage() {
 
           <div className="lg:col-span-5">
             <Reveal delay={120}>
-              <Portrait priority />
+              <Portrait preload />
             </Reveal>
             <Reveal delay={180}>
               <div className="mt-6 border-t border-line pt-6">

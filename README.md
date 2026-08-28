@@ -6,10 +6,17 @@ solution architect.
 Next.js 16 (App Router) · TypeScript · Tailwind v4 · statically generated · deploys to Vercel.
 
 ```bash
+nvm use         # Node version from .nvmrc
+npm ci          # first time on a machine, or after switching OS
 npm run dev     # http://localhost:3000
 npm run build   # production build — must pass before deploying
 npm run lint
 ```
+
+Works on Linux, macOS and Windows. `node_modules` is **not** portable between
+them — Next, Tailwind and Lightning CSS each ship a compiled native binary per
+platform. Copying a checkout across OSes means deleting `node_modules` and
+`.next`, then running `npm ci` again.
 
 ---
 

@@ -15,7 +15,7 @@ export const engagementModels: EngagementModel[] = [
     title: "Project delivery",
     bestFor: "You know what needs building and want one person accountable for delivering it.",
     description:
-      "A defined piece of work taken from requirements through to production. Scope, approach and milestones agreed up front, with architecture and delivery owned end to end. Where a project needs more parallel capacity than one engineer, delivery scales with trusted engineering resources — while technical decisions and your point of contact stay with me.",
+      "A defined piece of work taken from requirements through to production. Scope, approach and milestones agreed up front, with architecture and delivery owned end to end. Where a project needs more parallel capacity than one engineer, it is built by my own offshore engineering team — while technical decisions and your point of contact stay with me.",
     includes: [
       "Requirements and solution design",
       "Architecture and data modelling",
