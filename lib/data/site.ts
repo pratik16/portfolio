@@ -26,8 +26,7 @@ export const site = {
     href: "tel:+61490916967",
   },
 
-  // TODO(pratik): replace with the real profile URL.
-  linkedin: "https://www.linkedin.com/in/pratikvanol",
+  linkedin: "https://www.linkedin.com/in/pratikvan/",
 
   // TODO(pratik): purchase this domain and connect it in Vercel.
   url: "https://pratikvanol.com.au",
