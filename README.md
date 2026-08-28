@@ -30,7 +30,7 @@ with sensible placeholders — but each of these makes it materially better.
 | 1 | **Review the four articles.** They were drafted from your real project experience but are not yet in your voice. Read and edit them before deploying. | `content/insights/*.md` |
 | 2 | **Add your headshot.** A `PV` monogram placeholder shows until you do. | `public/images/pratik/pratik-vanol.jpg` |
 | 3 | **Add PotatoAIHub screenshots.** The case study hides its image block until the file exists. | `public/images/case-studies/potatoaihub.png` |
-| 4 | **Contact form key.** Free, takes a minute at [web3forms.com](https://web3forms.com). Without it the form shows a "call instead" message. | `.env.local` → `WEB3FORMS_ACCESS_KEY` |
+| 4 | **Contact form credentials.** A Gmail address plus a 16-character [app password](https://support.google.com/accounts/answer/185833) (needs 2-Step Verification on). Without them the form shows a "call instead" message. | `.env.local` → `GMAIL_USER`, `GMAIL_APP_PASSWORD` |
 | 5 | **Confirm your city/region.** Currently set to Geelong, VIC. This feeds the footer and the LocalBusiness structured data that helps Australian local search. | `lib/data/site.ts` → `site.location` |
 | 6 | **Confirm your LinkedIn URL.** Currently a guess. | `lib/data/site.ts` → `site.linkedin` |
 | 7 | **Buy the domain** and connect it in Vercel. | — |
@@ -140,6 +140,6 @@ After deploying: submit the sitemap in Google Search Console.
 
 1. Push to GitHub.
 2. Import the repo in Vercel — it detects Next.js with no configuration needed.
-3. Add `WEB3FORMS_ACCESS_KEY` as an environment variable.
+3. Add `GMAIL_USER` and `GMAIL_APP_PASSWORD` as environment variables (plus `CONTACT_TO_EMAIL` if enquiries should land somewhere other than `GMAIL_USER`). Redeploy afterwards — saving a variable does not rebuild on its own.
 4. Add the domain in Vercel and point your DNS at it.
 5. Update `site.url` in `lib/data/site.ts` if the final domain differs.

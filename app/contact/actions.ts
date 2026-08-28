@@ -3,15 +3,25 @@
 /**
  * Enquiry form submission.
  *
- * Posts to Web3Forms, which relays the enquiry to Pratik's inbox. Web3Forms was
- * chosen because it needs only an access key and works without a verified
- * sending domain — the domain has not been purchased yet.
+ * Runs on the server, so the mail credentials stay in unprefixed environment
+ * variables and are never bundled into the browser. (Next.js only inlines
+ * NEXT_PUBLIC_-prefixed variables into client code, so anything read here would
+ * be undefined if this module were ever pulled back into a client component.)
  *
- * SETUP: get a free key at https://web3forms.com and put it in .env.local as
- *   WEB3FORMS_ACCESS_KEY=your-key-here
+ * Delivery is Gmail SMTP via Nodemailer — free, and no custom domain needed while
+ * pratikvanol.com.au is still unregistered.
  *
- * Once pratikvanol.com.au exists and is verified, swapping to Resend is a
- * change to submitEnquiry() only — the form component does not need to know.
+ * SETUP: in .env.local (and in the hosting environment):
+ *   GMAIL_USER=your-address@gmail.com
+ *   GMAIL_APP_PASSWORD=your-16-char-app-password
+ *   CONTACT_TO_EMAIL=where-enquiries-land   # optional, defaults to GMAIL_USER
+ *
+ * The app password is NOT the account password: Google disabled plain-password
+ * SMTP in 2022. Generate one at Google Account → Security → App passwords, which
+ * requires 2-Step Verification to be switched on first.
+ *
+ * Once pratikvanol.com.au is verified with an email provider, swapping to Resend is
+ * a change to submitEnquiry() only — the form component does not need to know.
  */
 
 export type EnquiryState = {
@@ -20,6 +30,7 @@ export type EnquiryState = {
   fieldErrors?: Record<string, string>;
 };
 
+import nodemailer from "nodemailer";
 import { PROJECT_TYPES } from "./project-types";
 
 const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -65,10 +76,14 @@ export async function submitEnquiry(
     };
   }
 
-  const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
-  if (!accessKey) {
+  const user = process.env.GMAIL_USER;
+  // App passwords are displayed in groups of four; tolerate a pasted-in space.
+  const pass = process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, "");
+  const to = process.env.CONTACT_TO_EMAIL || user;
+
+  if (!user || !pass) {
     console.error(
-      "[contact] WEB3FORMS_ACCESS_KEY is not set. Add it to .env.local — see app/contact/actions.ts",
+      "[contact] GMAIL_USER / GMAIL_APP_PASSWORD are not set. Add them to .env.local and to the hosting environment — see app/contact/actions.ts",
     );
     return {
       status: "error",
@@ -77,36 +92,37 @@ export async function submitEnquiry(
     };
   }
 
+  // Flat lines so the notification email is readable at a glance.
+  const body = [
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Company: ${company || "—"}`,
+    `Phone: ${phone || "—"}`,
+    `Project type: ${projectType}`,
+    `Approximate scope: ${scope || "—"}`,
+    `Timeline: ${timeline || "—"}`,
+    `Budget: ${budget || "—"}`,
+    "",
+    "The problem:",
+    problem,
+  ].join("\n");
+
   try {
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        access_key: accessKey,
-        subject: `New enquiry from ${name}${company ? ` (${company})` : ""}`,
-        from_name: "pratikvanol.com.au",
-        replyto: email,
-        // Flat fields so the notification email is readable.
-        Name: name,
-        Email: email,
-        Company: company || "—",
-        Phone: phone || "—",
-        "Project type": projectType,
-        "The problem": problem,
-        "Approximate scope": scope || "—",
-        Timeline: timeline || "—",
-        Budget: budget || "—",
-      }),
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user, pass },
     });
 
-    if (!response.ok) {
-      console.error("[contact] Web3Forms responded", response.status);
-      return {
-        status: "error",
-        message:
-          "Something went wrong sending that. Please try again, or call and it will be sorted out directly.",
-      };
-    }
+    // Must be fully awaited: Vercel suspends background work once the response is
+    // returned, which would drop an in-flight SMTP handshake without an error.
+    await transporter.sendMail({
+      // Gmail rewrites the sender to the authenticated account, so use it directly.
+      from: `"pratikvanol.com.au enquiries" <${user}>`,
+      to,
+      replyTo: `"${name}" <${email}>`,
+      subject: `New enquiry from ${name}${company ? ` (${company})` : ""}`,
+      text: body,
+    });
 
     return {
       status: "success",
