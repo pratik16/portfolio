@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Instrument_Serif } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { site } from "@/lib/data/site";
@@ -143,6 +144,7 @@ export default function RootLayout({
         <main id="main">{children}</main>
         <SiteFooter />
         <StructuredData />
+        <Analytics />
       </body>
     </html>
   );
