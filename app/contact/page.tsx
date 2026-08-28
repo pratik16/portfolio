@@ -52,7 +52,7 @@ export default function ContactPage() {
         <Container>
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
             {/* Form */}
-            <div className="lg:col-span-7">
+            <div id="enquiry-form" className="lg:col-span-7">
               <EnquiryForm />
             </div>
 
@@ -65,12 +65,18 @@ export default function ContactPage() {
                     href={site.phone.href}
                     className="font-display text-3xl transition-colors hover:text-clay sm:text-4xl"
                   >
-                    {site.phone.display}
+                    Call me: {site.phone.display}
                   </a>
                   <p className="mt-5 leading-relaxed text-muted">
                     Straight through to me. If you are weighing something up and would
                     rather think out loud than write it down, this is usually the quicker
                     route.
+                  </p>
+                  <p className="mt-4 text-sm text-muted">
+                    Prefer not to call?{" "}
+                    <a href="#enquiry-form" className="font-medium text-clay hover:text-ink">
+                      Send me a message
+                    </a>
                   </p>
 
                   <div className="mt-8 border-t border-line pt-6">

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/lib/data/site";
 import { ButtonLink, Container, Section } from "@/components/ui";
 import { Reveal } from "@/components/reveal";
@@ -28,9 +29,16 @@ export function CtaBand({
                 Discuss a Project
               </ButtonLink>
               <ButtonLink href={site.phone.href} variant="quiet" size="lg" external>
-                {site.phone.display}
+                Call me: {site.phone.display}
               </ButtonLink>
             </div>
+
+            <p className="mt-4 text-sm text-muted">
+              Prefer not to call?{" "}
+              <Link href="/contact" className="font-medium text-clay hover:text-ink">
+                Send me a message
+              </Link>
+            </p>
 
             <p className="mt-8 text-sm text-muted">
               Working with businesses across Australia — Melbourne, Sydney, Brisbane,

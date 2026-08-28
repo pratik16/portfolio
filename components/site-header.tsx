@@ -233,8 +233,14 @@ export function SiteHeader() {
               href={site.phone.href}
               className="mt-3 flex w-full items-center justify-center rounded-full border border-line px-6 py-4 font-medium"
             >
-              {site.phone.display}
+              Call me: {site.phone.display}
             </a>
+            <p className="mt-3 text-center text-sm text-muted">
+              Prefer not to call?{" "}
+              <Link href={ctaHref} className="font-medium text-clay hover:text-ink">
+                Send me a message
+              </Link>
+            </p>
           </nav>
         </div>
       )}

@@ -30,9 +30,15 @@ export function SiteFooter() {
                 href={site.phone.href}
                 className="rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium transition-colors hover:border-ink"
               >
-                {site.phone.display}
+                Call me: {site.phone.display}
               </a>
             </div>
+            <p className="mt-3 text-sm text-muted">
+              Prefer not to call?{" "}
+              <Link href="/contact" className="font-medium text-clay hover:text-ink">
+                Send me a message
+              </Link>
+            </p>
           </div>
 
           {/* Services */}
@@ -87,8 +93,16 @@ export function SiteFooter() {
                   href={site.phone.href}
                   className="text-sm text-muted transition-colors hover:text-ink"
                 >
-                  {site.phone.display}
+                  Call me: {site.phone.display}
                 </a>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-sm text-muted transition-colors hover:text-ink"
+                >
+                  Prefer not to call? Send a message
+                </Link>
               </li>
               <li>
                 <a
