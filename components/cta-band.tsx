@@ -31,10 +31,13 @@ export function CtaBand({
               <ButtonLink href={site.phone.href} variant="quiet" size="lg" external>
                 Call me: {site.phone.display}
               </ButtonLink>
+              <ButtonLink href={site.whatsapp.href} variant="quiet" size="lg" external>
+                {site.whatsapp.label}
+              </ButtonLink>
             </div>
 
             <p className="mt-4 text-sm text-muted">
-              Prefer not to call?{" "}
+              Prefer to write instead?{" "}
               <Link href="/contact" className="font-medium text-clay hover:text-ink">
                 Send me a message
               </Link>

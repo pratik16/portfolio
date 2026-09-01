@@ -235,8 +235,16 @@ export function SiteHeader() {
             >
               Call me: {site.phone.display}
             </a>
+            <a
+              href={site.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 flex w-full items-center justify-center rounded-full border border-line px-6 py-4 font-medium"
+            >
+              {site.whatsapp.label}
+            </a>
             <p className="mt-3 text-center text-sm text-muted">
-              Prefer not to call?{" "}
+              Prefer to write instead?{" "}
               <Link href={ctaHref} className="font-medium text-clay hover:text-ink">
                 Send me a message
               </Link>

@@ -60,20 +60,30 @@ export default function ContactPage() {
             <div className="lg:col-span-5">
               <Reveal delay={80}>
                 <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
-                  <p className="eyebrow mb-5">Prefer to call?</p>
+                  <p className="eyebrow mb-5">Prefer to talk directly?</p>
                   <a
                     href={site.phone.href}
                     className="font-display text-3xl transition-colors hover:text-clay sm:text-4xl"
                   >
                     Call me: {site.phone.display}
                   </a>
+                  <div className="mt-5">
+                    <a
+                      href={site.whatsapp.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex rounded-full border border-line px-5 py-2.5 text-sm font-medium transition-colors hover:border-ink"
+                    >
+                      {site.whatsapp.label}
+                    </a>
+                  </div>
                   <p className="mt-5 leading-relaxed text-muted">
                     Straight through to me. If you are weighing something up and would
-                    rather think out loud than write it down, this is usually the quicker
-                    route.
+                    rather think it through live, a call or WhatsApp message is usually
+                    the quicker route.
                   </p>
                   <p className="mt-4 text-sm text-muted">
-                    Prefer not to call?{" "}
+                    Prefer to write more detail?{" "}
                     <a href="#enquiry-form" className="font-medium text-clay hover:text-ink">
                       Send me a message
                     </a>

@@ -22,8 +22,13 @@ export const site = {
   },
 
   phone: {
-    display: "0490 916 967",
+    display: "(+61) 490 916 967",
     href: "tel:+61490916967",
+  },
+
+  whatsapp: {
+    label: "WhatsApp me",
+    href: "https://wa.me/61490916967",
   },
 
   linkedin: "https://www.linkedin.com/in/pratikvan/",

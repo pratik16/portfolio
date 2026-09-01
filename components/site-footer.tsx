@@ -32,9 +32,17 @@ export function SiteFooter() {
               >
                 Call me: {site.phone.display}
               </a>
+              <a
+                href={site.whatsapp.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium transition-colors hover:border-ink"
+              >
+                {site.whatsapp.label}
+              </a>
             </div>
             <p className="mt-3 text-sm text-muted">
-              Prefer not to call?{" "}
+              Prefer to write instead?{" "}
               <Link href="/contact" className="font-medium text-clay hover:text-ink">
                 Send me a message
               </Link>
@@ -97,11 +105,21 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
+                <a
+                  href={site.whatsapp.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted transition-colors hover:text-ink"
+                >
+                  {site.whatsapp.label}
+                </a>
+              </li>
+              <li>
                 <Link
                   href="/contact"
                   className="text-sm text-muted transition-colors hover:text-ink"
                 >
-                  Prefer not to call? Send a message
+                  Prefer to write instead? Send a message
                 </Link>
               </li>
               <li>

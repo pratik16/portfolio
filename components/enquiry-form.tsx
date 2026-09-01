@@ -127,13 +127,14 @@ export function EnquiryForm() {
 
         <div>
           <Label htmlFor="phone" optional>
-            Phone
+            Phone / WhatsApp
           </Label>
           <input
             id="phone"
             name="phone"
             type="tel"
             autoComplete="tel"
+            placeholder="(+61) 490 916 967"
             className={fieldClass}
           />
         </div>
