@@ -1,19 +1,21 @@
 import Link from "next/link";
 import type { CaseStudy } from "@/lib/data/case-studies";
+import { TrackedLink } from "@/components/tracked-link";
 
 export function CaseStudyCard({
   study,
   featured = false,
+  trackingLocation,
 }: {
   study: CaseStudy;
   /** Featured cards span the full width and carry more detail. */
   featured?: boolean;
+  trackingLocation?: string;
 }) {
-  return (
-    <Link
-      href={`/case-studies/${study.slug}`}
-      className="group flex h-full flex-col justify-between rounded-2xl border border-line bg-paper p-8 transition-all duration-300 hover:border-ink/25 hover:shadow-[0_20px_50px_-30px_rgba(26,25,23,0.35)] sm:p-10"
-    >
+  const className =
+    "group flex h-full flex-col justify-between rounded-2xl border border-line bg-paper p-8 transition-all duration-300 hover:border-ink/25 hover:shadow-[0_20px_50px_-30px_rgba(26,25,23,0.35)] sm:p-10";
+  const children = (
+    <>
       <div>
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
           <span className="font-display text-2xl">{study.name}</span>
@@ -54,6 +56,25 @@ export function CaseStudyCard({
           </span>
         </span>
       </div>
+    </>
+  );
+
+  if (trackingLocation) {
+    return (
+      <TrackedLink
+        href={`/case-studies/${study.slug}`}
+        event="Project link click"
+        properties={{ project: study.slug, location: trackingLocation }}
+        className={className}
+      >
+        {children}
+      </TrackedLink>
+    );
+  }
+
+  return (
+    <Link href={`/case-studies/${study.slug}`} className={className}>
+      {children}
     </Link>
   );
 }

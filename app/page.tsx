@@ -6,11 +6,11 @@ import { deliveryModel, differentiators, offshorePoints, problems } from "@/lib/
 import { site } from "@/lib/data/site";
 import {
   ArrowLink,
-  ButtonLink,
   Container,
   Section,
   SectionHeading,
 } from "@/components/ui";
+import { TrackedLink } from "@/components/tracked-link";
 import { Reveal } from "@/components/reveal";
 import { StatStrip, WorkedWith } from "@/components/stat-strip";
 import { CaseStudyCard } from "@/components/case-study-card";
@@ -25,6 +25,36 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+const primaryButtonClass =
+  "inline-flex items-center justify-center gap-2 rounded-full bg-clay px-7 py-3.5 text-base font-medium text-paper transition-colors duration-200 hover:bg-ink";
+
+const secondaryButtonClass =
+  "inline-flex items-center justify-center gap-2 rounded-full border border-ink/25 px-7 py-3.5 text-base font-medium text-ink transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-paper";
+
+const visitorPaths = [
+  {
+    title: "See production proof",
+    body: "Start with shipped systems, constraints, and measured outcomes.",
+    href: "/case-studies",
+    label: "View case studies",
+    event: "View Case Studies click",
+  },
+  {
+    title: "Match your problem",
+    body: "Find the service page closest to what is slowing the business down.",
+    href: "/services",
+    label: "Explore services",
+    event: "Homepage service path click",
+  },
+  {
+    title: "Talk through the work",
+    body: "Share the situation and get a direct read on the sensible next move.",
+    href: "/contact",
+    label: "Start a conversation",
+    event: "Contact click",
+  },
+] as const;
+
 export default function HomePage() {
   const featured = getFeaturedCaseStudies();
 
@@ -34,7 +64,7 @@ export default function HomePage() {
       {/* Hero                                                              */}
       {/* ---------------------------------------------------------------- */}
       <Container>
-        <div className="py-20 sm:py-28 lg:py-32">
+        <div className="py-16 sm:py-24 lg:py-28">
           <div className="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-16">
             <div className="lg:col-span-7">
               <Reveal>
@@ -44,56 +74,94 @@ export default function HomePage() {
               </Reveal>
 
               <Reveal delay={80}>
-                {/* Capped at 6xl rather than 7xl: the portrait column now takes
-                    five of twelve, and 7xl wraps to five ragged lines in what
-                    is left. */}
                 <h1 className="mt-6 font-display text-5xl leading-[1.05] sm:text-6xl">
-                  Software engineering and technology consulting for Australian businesses
+                  Senior software engineering for Australian businesses that need the work owned, not just quoted.
                 </h1>
               </Reveal>
 
               <Reveal delay={140}>
                 <p className="mt-8 font-display text-2xl text-clay sm:text-3xl">
-                  {site.shortTagline}
+                  {site.shortTagline} Then keep improving it once real users arrive.
                 </p>
               </Reveal>
 
               <Reveal delay={200}>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-                  Sixteen years building, modernising and scaling software — backend systems,
-                  APIs, cloud infrastructure and AI. You work directly with the engineer doing
-                  the work, not an account manager between you and it.
+                  I help businesses build new products, modernise systems that still matter,
+                  and make slow software fast again. You work directly with the engineer
+                  making the architecture decisions and writing the code.
                 </p>
               </Reveal>
 
               <Reveal delay={260}>
                 <div className="mt-12 flex flex-wrap items-center gap-4">
-                  <ButtonLink href="/contact" size="lg">
+                  <TrackedLink
+                    href="/contact"
+                    event="Contact click"
+                    properties={{ location: "hero_primary" }}
+                    className={primaryButtonClass}
+                  >
                     Discuss a Project
-                  </ButtonLink>
-                  <ButtonLink href="/case-studies" variant="secondary" size="lg">
+                  </TrackedLink>
+                  <TrackedLink
+                    href="/case-studies"
+                    event="View Case Studies click"
+                    properties={{ location: "hero_secondary" }}
+                    className={secondaryButtonClass}
+                  >
                     View case studies
-                  </ButtonLink>
+                  </TrackedLink>
                 </div>
+              </Reveal>
+
+              <Reveal delay={320}>
+                <dl className="mt-12 grid max-w-2xl gap-6 border-y border-line py-6 sm:grid-cols-3">
+                  <div>
+                    <dt className="text-xs font-medium uppercase tracking-[0.12em] text-muted">
+                      Best fit
+                    </dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-ink-soft">
+                      SaaS, internal tools, APIs and legacy platforms
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-medium uppercase tracking-[0.12em] text-muted">
+                      Strength
+                    </dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-ink-soft">
+                      Backend architecture, databases, cloud and AI
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-medium uppercase tracking-[0.12em] text-muted">
+                      Engagement
+                    </dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-ink-soft">
+                      Direct senior ownership, with capacity when needed
+                    </dd>
+                  </div>
+                </dl>
               </Reveal>
             </div>
 
-            {/* The face is the trust signal for a one-person consultancy, so it
-                sits above the fold rather than halfway down the page. Falls back
-                to a deliberate placeholder until the photo file exists — see
-                components/portrait.tsx. */}
             <div className="lg:col-span-5">
               <Reveal delay={120}>
                 <Portrait preload className="max-w-[20rem] lg:ml-auto lg:max-w-[22rem]" />
               </Reveal>
               <Reveal delay={180}>
-                <div className="mt-6 max-w-[20rem] border-t border-line pt-6 lg:ml-auto lg:max-w-[22rem]">
+                <div className="mt-6 max-w-[20rem] rounded-2xl border border-line bg-surface p-6 lg:ml-auto lg:max-w-[22rem]">
                   <p className="font-medium">{site.name}</p>
                   <p className="mt-1 text-sm text-muted">{site.role}</p>
                   <p className="mt-1 text-sm text-muted">
                     {site.location.city}, {site.location.regionCode} · Working across{" "}
                     {site.location.country}
                   </p>
+                  <div className="mt-5 border-t border-line pt-5">
+                    <p className="text-sm leading-relaxed text-muted">
+                      Sixteen years hands-on, with live products and client systems behind
+                      the advice.
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             </div>
@@ -104,6 +172,42 @@ export default function HomePage() {
       <StatStrip />
       <WorkedWith />
 
+      <Section bordered className="py-14 sm:py-16">
+        <Container>
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-3">
+            {visitorPaths.map((path, i) => (
+              <Reveal key={path.title} delay={i * 60} className="h-full">
+                <TrackedLink
+                  href={path.href}
+                  event={path.event}
+                  properties={{ location: "homepage_journey" }}
+                  className="group flex h-full flex-col justify-between bg-paper p-7 transition-colors duration-300 hover:bg-surface sm:p-8"
+                >
+                  <div>
+                    <span className="font-display text-3xl text-clay/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h2 className="mt-4 font-display text-2xl leading-tight">
+                      {path.title}
+                    </h2>
+                    <p className="mt-3 leading-relaxed text-muted">{path.body}</p>
+                  </div>
+                  <span className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-clay">
+                    {path.label}
+                    <span
+                      aria-hidden="true"
+                      className="transition-transform duration-200 group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </span>
+                </TrackedLink>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
       {/* ---------------------------------------------------------------- */}
       {/* Problems — the visitor should recognise themselves here           */}
       {/* ---------------------------------------------------------------- */}
@@ -111,8 +215,8 @@ export default function HomePage() {
         <Container>
           <SectionHeading
             eyebrow="Where people usually start"
-            title="What is actually going wrong?"
-            lede="Most enquiries arrive as one of these. If one of them sounds like your situation, the relevant page goes into what fixing it involves."
+            title="Find the version of the problem you are living with"
+            lede="Most enquiries arrive as one of these. Pick the closest one and you will see what fixing it usually involves before you ever book a call."
           />
 
           <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
@@ -142,7 +246,20 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div className="mt-8">
-                  <ArrowLink href="/contact">Start a conversation</ArrowLink>
+                  <TrackedLink
+                    href="/contact"
+                    event="Contact click"
+                    properties={{ location: "problem_grid" }}
+                    className="group inline-flex items-center gap-1.5 text-sm font-medium text-clay transition-colors hover:text-ink"
+                  >
+                    Start a conversation
+                    <span
+                      aria-hidden="true"
+                      className="transition-transform duration-200 group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </TrackedLink>
                 </div>
               </div>
             </Reveal>
@@ -158,23 +275,34 @@ export default function HomePage() {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <SectionHeading
               eyebrow="Selected work"
-              title="Software that is running in production"
-              lede="Real systems, real constraints, and the reasoning behind the decisions. Every figure below is measured, not estimated."
+              title="Proof that the work holds up after launch"
+              lede="Start here if you are deciding whether to keep reading. These are real systems, real constraints, and the reasoning behind the decisions."
             />
-            <ArrowLink href="/case-studies" className="mb-2">
+            <TrackedLink
+              href="/case-studies"
+              event="View Case Studies click"
+              properties={{ location: "selected_work_header" }}
+              className="group mb-2 inline-flex items-center gap-1.5 text-sm font-medium text-clay transition-colors hover:text-ink"
+            >
               All case studies
-            </ArrowLink>
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </TrackedLink>
           </div>
 
           <div className="mt-16 space-y-6">
             <Reveal>
-              <CaseStudyCard study={featured[0]} featured />
+              <CaseStudyCard study={featured[0]} featured trackingLocation="selected_work_featured" />
             </Reveal>
 
             <div className="grid gap-6 lg:grid-cols-3">
               {featured.slice(1, 4).map((study, i) => (
                 <Reveal key={study.slug} delay={i * 70} className="h-full">
-                  <CaseStudyCard study={study} />
+                  <CaseStudyCard study={study} trackingLocation="selected_work_grid" />
                 </Reveal>
               ))}
             </div>
@@ -189,8 +317,8 @@ export default function HomePage() {
         <Container>
           <SectionHeading
             eyebrow="Services"
-            title="What I can take responsibility for"
-            lede="From a single audit to owning a product end to end. Each of these is a real engagement type, not a capability list."
+            title="Clear ways to start, without turning this into agency theatre"
+            lede="From a focused audit to owning a product end to end. Each option points to a real engagement shape, not a vague capability list."
           />
 
           <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
@@ -233,7 +361,7 @@ export default function HomePage() {
             <div className="lg:col-span-8">
               <SectionHeading
                 eyebrow="Why work with me"
-                title="Why an Australian business would trust me with this"
+                title="Trust signals that matter before a first conversation"
               />
 
               <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
