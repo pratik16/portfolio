@@ -51,7 +51,7 @@ export async function submitEnquiry(
   const company = get("company");
   const phone = get("phone");
   const projectType = get("projectType");
-  const problem = get("problem");
+  const projectBrief = get("projectBrief");
   const scope = get("scope");
   const timeline = get("timeline");
   const budget = get("budget");
@@ -63,9 +63,9 @@ export async function submitEnquiry(
   if (!projectType || !(PROJECT_TYPES as readonly string[]).includes(projectType)) {
     fieldErrors.projectType = "Please choose the closest match.";
   }
-  if (!problem) fieldErrors.problem = "A short description of the problem helps a lot.";
-  else if (problem.length < 20) {
-    fieldErrors.problem = "Please add a little more detail — a couple of sentences is plenty.";
+  if (!projectBrief) fieldErrors.projectBrief = "A short project description helps a lot.";
+  else if (projectBrief.length < 20) {
+    fieldErrors.projectBrief = "Please add a little more detail — a couple of sentences is plenty.";
   }
 
   if (Object.keys(fieldErrors).length > 0) {
@@ -103,8 +103,8 @@ export async function submitEnquiry(
     `Timeline: ${timeline || "—"}`,
     `Budget: ${budget || "—"}`,
     "",
-    "The problem:",
-    problem,
+    "Project brief:",
+    projectBrief,
   ].join("\n");
 
   try {

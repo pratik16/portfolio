@@ -7,7 +7,7 @@
 export const PROJECT_TYPES = [
   "New software / product build",
   "Legacy system modernisation",
-  "Performance or database problem",
+  "Performance or database improvement",
   "AI feature or automation",
   "Cloud, AWS or DevOps",
   "Technical audit or second opinion",

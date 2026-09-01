@@ -41,8 +41,8 @@ export default function ContactPage() {
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-              Tell me what you are trying to achieve and where it is currently going
-              wrong. The more specific you can be, the more useful the reply will be.
+              Tell me what you want to build, improve or explore. A few practical details
+              are enough to start a useful conversation.
             </p>
           </Reveal>
         </div>

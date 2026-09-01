@@ -112,7 +112,7 @@ export function EnquiryForm() {
 
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email">Work email</Label>
           <input
             id="email"
             name="email"
@@ -140,7 +140,7 @@ export function EnquiryForm() {
       </div>
 
       <div>
-        <Label htmlFor="projectType">What is this about?</Label>
+        <Label htmlFor="projectType">What do you want to build?</Label>
         <select
           id="projectType"
           name="projectType"
@@ -162,23 +162,23 @@ export function EnquiryForm() {
       </div>
 
       <div>
-        <Label htmlFor="problem">What are you trying to achieve, and what is going wrong?</Label>
+        <Label htmlFor="projectBrief">Tell me about the project</Label>
         <textarea
-          id="problem"
-          name="problem"
+          id="projectBrief"
+          name="projectBrief"
           required
           rows={6}
           className={`${fieldClass} resize-y`}
-          placeholder="A couple of sentences is plenty. The more specific the problem, the more useful the reply will be."
-          aria-invalid={Boolean(errors.problem)}
+          placeholder="What do you want to build, improve or automate? A couple of sentences is enough to begin."
+          aria-invalid={Boolean(errors.projectBrief)}
         />
-        <FieldError message={errors.problem} />
+        <FieldError message={errors.projectBrief} />
       </div>
 
       <div className="grid gap-6 sm:grid-cols-3">
         <div>
           <Label htmlFor="scope" optional>
-            Scope
+            Project size
           </Label>
           <select id="scope" name="scope" defaultValue="" className={fieldClass}>
             <option value="">Choose…</option>
@@ -205,7 +205,7 @@ export function EnquiryForm() {
 
         <div>
           <Label htmlFor="budget" optional>
-            Budget
+            Budget range
           </Label>
           <select id="budget" name="budget" defaultValue="" className={fieldClass}>
             <option value="">Choose…</option>
