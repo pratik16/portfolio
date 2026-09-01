@@ -11,7 +11,7 @@ export type Stat = {
 /** Every figure here is real and traceable. Nothing invented. */
 export const stats: Stat[] = [
   { value: "16+", label: "Years engineering software" },
-  { value: "8+", label: "Years in Laravel specifically" },
+  { value: "Full-stack", label: "Backend, frontend and cloud delivery" },
   { value: "Up to 80%", label: "API performance recovered on a legacy platform" },
   { value: "Live", label: "AI platform built, shipped and operated" },
 ];
@@ -73,7 +73,7 @@ export const differentiators: Differentiator[] = [
   },
   {
     title: "Depth where it matters",
-    body: "Backend architecture, databases and performance — the areas where a wrong decision is expensive and hard to reverse later. Plus the cloud and frontend work needed to actually finish a project.",
+    body: "Backend architecture, databases and performance — the areas where a wrong decision is expensive and hard to reverse later. Plus the frontend, cloud and product work needed to actually finish a project.",
   },
   {
     title: "Products that are live, not slides",
@@ -85,7 +85,7 @@ export const differentiators: Differentiator[] = [
   },
   {
     title: "It can scale when the project does",
-    body: "Small work is delivered personally. Larger work is built by my own offshore engineering team, while architecture, decisions and your point of contact stay exactly where they were.",
+    body: "Small work is delivered personally. Larger work is built by my offshore engineering team, while architecture, decisions and responsibility stay with me.",
   },
 ];
 
@@ -103,13 +103,12 @@ export const workedWith: string[] = [
 
 export const deliveryModel = {
   eyebrow: "How delivery works",
-  title: "One local contact. Engineering capacity that scales.",
+  title: "One responsible owner. Offshore capacity when the project needs it.",
   body: [
-    "You contract with me, here in Australia. I own requirements, architecture, technical decisions and delivery leadership, and that does not change at any project size — it is the whole point of hiring a senior engineer rather than an agency.",
-    "When a project needs more built in parallel than one person can build, it is delivered by my own offshore engineering team — people I have worked with and led for years, working to a specification I wrote, against code I review.",
-    "And if what you need is engineers rather than a project, that is available directly: dedicated developers working as an extension of your team, with me as the local technical contact who stays accountable for what they produce.",
-    "What this deliberately avoids is the handoff — sold to by one person, then passed to another who was in none of the earlier conversations. Offshore delivery fails when nobody senior owns the outcome, not because the work happens somewhere else. Here that person is local, named, and the one you already spoke to.",
-    "None of which means the team sits behind me. If you would rather deal with the engineers directly — a weekly call, a shared channel, whatever suits how you already work — that is entirely fine. The only thing that does not move is who answers for the result.",
+    "You work with me as the single responsible person for the outcome. I own requirements, architecture, technical decisions, review and delivery leadership, whether the project is small enough for me alone or large enough to need a team.",
+    "For bigger builds, I can bring in my offshore engineering team — people I have worked with and led for years. They add capacity across backend, frontend and delivery work while the technical direction and accountability stay with me.",
+    "That means you do not have to coordinate a remote team, translate requirements across layers, or wonder who is responsible when something needs a decision. You get the speed of a larger team with one senior person answerable for the result.",
+    "The stack is chosen around the project, not around one favourite tool. Laravel is there when it is the right backend choice, alongside Node and Next.js; frontend work can be delivered in React or Angular; cloud and server-side delivery is usually on AWS.",
   ],
 };
 
@@ -130,18 +129,18 @@ export type OffshorePoint = {
 export const offshorePoints: OffshorePoint[] = [
   {
     title: "One contract, one owner",
-    body: "You contract with an Australian business, ABN registered here in Geelong, invoiced in AUD. The delivery arrangement behind it is mine to manage, not yours to coordinate.",
+    body: "You contract with an Australian business, ABN registered here in Geelong, invoiced in AUD. The delivery arrangement behind it is mine to manage, and I stay responsible for the work.",
   },
   {
-    title: "Engineers, not tickets",
-    body: "Dedicated developers who stay on your work long enough to actually understand it — briefed, reviewed and answered for by me.",
+    title: "A team when needed",
+    body: "For larger scopes, trusted offshore engineers can work under my direction across backend, frontend and implementation while I stay the point of accountability.",
   },
   {
-    title: "Your working hours, not theirs",
-    body: "The team shifts to overlap your day where a project needs it, rather than leaving you a narrow window late in the afternoon to get anything answered.",
+    title: "Modern full-stack delivery",
+    body: "Laravel, Node and Next.js for backend work; React and Angular for frontend interfaces; AWS for server-side architecture, deployment and operations.",
   },
   {
     title: "Cost that matches the scope",
-    body: "Senior architecture where a wrong decision is expensive to reverse, and cost-effective delivery capacity where the work is volume.",
+    body: "Senior architecture where a wrong decision is expensive to reverse, and cost-effective delivery capacity where the work needs more hands.",
   },
 ];

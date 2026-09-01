@@ -55,6 +55,12 @@ const visitorPaths = [
   },
 ] as const;
 
+const capabilityGroups = [
+  { label: "Backend", tools: ["Laravel", "Node", "Next.js"] },
+  { label: "Frontend", tools: ["React", "Angular"] },
+  { label: "Cloud", tools: ["AWS", "APIs", "Databases"] },
+] as const;
+
 export default function HomePage() {
   const featured = getFeaturedCaseStudies();
 
@@ -88,8 +94,9 @@ export default function HomePage() {
               <Reveal delay={200}>
                 <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
                   I help businesses build new products, modernise systems that still matter,
-                  and make slow software fast again. You work directly with the engineer
-                  making the architecture decisions and writing the code.
+                  and make slow software fast again across backend, frontend and cloud.
+                  You work directly with the engineer making the architecture decisions
+                  and taking responsibility for delivery.
                 </p>
               </Reveal>
 
@@ -115,7 +122,25 @@ export default function HomePage() {
               </Reveal>
 
               <Reveal delay={320}>
-                <dl className="mt-12 grid max-w-2xl gap-6 border-y border-line py-6 sm:grid-cols-3">
+                <div className="mt-10 max-w-2xl border-y border-line py-6">
+                  <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted">
+                    Common project stack
+                  </p>
+                  <div className="mt-4 grid gap-4 sm:grid-cols-3">
+                    {capabilityGroups.map((group) => (
+                      <div key={group.label}>
+                        <p className="text-sm font-medium text-ink">{group.label}</p>
+                        <p className="mt-1 text-sm leading-relaxed text-muted">
+                          {group.tools.join(" · ")}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+
+              <Reveal delay={360}>
+                <dl className="mt-8 grid max-w-2xl gap-6 sm:grid-cols-3">
                   <div>
                     <dt className="text-xs font-medium uppercase tracking-[0.12em] text-muted">
                       Best fit
@@ -129,7 +154,7 @@ export default function HomePage() {
                       Strength
                     </dt>
                     <dd className="mt-2 text-sm leading-relaxed text-ink-soft">
-                      Backend architecture, databases, cloud and AI
+                      Backend architecture, full-stack delivery, cloud and AI
                     </dd>
                   </div>
                   <div>
@@ -137,7 +162,7 @@ export default function HomePage() {
                       Engagement
                     </dt>
                     <dd className="mt-2 text-sm leading-relaxed text-ink-soft">
-                      Direct senior ownership, with capacity when needed
+                      One responsible owner, with offshore capacity when needed
                     </dd>
                   </div>
                 </dl>
@@ -158,8 +183,8 @@ export default function HomePage() {
                   </p>
                   <div className="mt-5 border-t border-line pt-5">
                     <p className="text-sm leading-relaxed text-muted">
-                      Sixteen years hands-on, with live products and client systems behind
-                      the advice.
+                      Sixteen years hands-on, with a trusted offshore team available for
+                      larger backend, frontend and cloud builds.
                     </p>
                   </div>
                 </div>
@@ -348,8 +373,8 @@ export default function HomePage() {
                   <p className="font-display text-2xl">{site.name}</p>
                   <p className="mt-1 text-sm text-muted">{site.role}</p>
                   <p className="mt-5 leading-relaxed text-muted">
-                    Sixteen years of building software, most of it deep in backend
-                    systems, databases and architecture — and still writing the code.
+                    Sixteen years of building software across backend, frontend, cloud and
+                    architecture — and still close enough to the code to own the outcome.
                   </p>
                   <div className="mt-6">
                     <ArrowLink href="/about">More about how I work</ArrowLink>
