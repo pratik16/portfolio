@@ -103,12 +103,12 @@ export const workedWith: string[] = [
 
 export const deliveryModel = {
   eyebrow: "How delivery works",
-  title: "One responsible owner. Offshore capacity when the project needs it.",
+  title: "One responsible owner across your stack. Offshore capacity when the project needs it.",
   body: [
-    "You work with me as the single responsible person for the outcome. I own requirements, architecture, technical decisions, review and delivery leadership, whether the project is small enough for me alone or large enough to need a team.",
+    "You work with me as the single responsible person for the outcome. I own requirements, architecture, technical decisions, review and delivery leadership, whether the project uses my usual stack, your existing technology, or a mix of both.",
     "For bigger builds, I can bring in my offshore engineering team — people I have worked with and led for years. They add capacity across backend, frontend and delivery work while the technical direction and accountability stay with me.",
     "That means you do not have to coordinate a remote team, translate requirements across layers, or wonder who is responsible when something needs a decision. You get the speed of a larger team with one senior person answerable for the result.",
-    "The stack is chosen around the project, not around one favourite tool. Laravel is there when it is the right backend choice, alongside Node and Next.js; frontend work can be delivered in React or Angular; cloud and server-side delivery is usually on AWS.",
+    "The stack is chosen around the project, not around one favourite tool. Laravel, Node, Next.js, React, Angular and AWS are common choices, but the work can also fit around the technology your business already has.",
   ],
 };
 
@@ -136,8 +136,8 @@ export const offshorePoints: OffshorePoint[] = [
     body: "For larger scopes, trusted offshore engineers can work under my direction across backend, frontend and implementation while I stay the point of accountability.",
   },
   {
-    title: "Modern full-stack delivery",
-    body: "Laravel, Node and Next.js for backend work; React and Angular for frontend interfaces; AWS for server-side architecture, deployment and operations.",
+    title: "Stack-aware delivery",
+    body: "Laravel, Node, Next.js, React, Angular and AWS are common choices, but existing platforms and other technologies can be assessed, improved and extended when that is the right commercial path.",
   },
   {
     title: "Cost that matches the scope",

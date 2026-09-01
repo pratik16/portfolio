@@ -162,7 +162,7 @@ export default function HomePage() {
                       Engagement
                     </dt>
                     <dd className="mt-2 text-sm leading-relaxed text-ink-soft">
-                      One responsible owner, with offshore capacity when needed
+                      One responsible owner across your stack, with offshore capacity when needed
                     </dd>
                   </div>
                 </dl>
