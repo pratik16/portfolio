@@ -1,7 +1,7 @@
 /**
  * Case studies. Every claim here traces to real delivered work.
- * The only hard performance number on the site is Squava's verified
- * "up to 80%" API improvement — nothing else carries an invented metric.
+ * Hard performance numbers are used only when they trace to stored project
+ * evidence — nothing here carries an invented metric.
  */
 
 export type Metric = {
@@ -188,6 +188,48 @@ export const caseStudies: CaseStudy[] = [
     ],
     featured: true,
     relatedServices: ["ai-automation", "software-development", "cloud-devops"],
+  },
+  {
+    slug: "sql-performance-doctor",
+    name: "SQL Performance Doctor",
+    headline: "Building an AI workflow that proves its SQL advice before trusting it",
+    client: "Hackathon project",
+    sector: "AI engineering — PostgreSQL performance optimisation",
+    duration: "Built and evaluated during a hackathon sprint",
+    summary:
+      "An agentic PostgreSQL optimisation workflow that tests recommendations against a real benchmark database before accepting them. On the full benchmark it improved verified success from 7/15 to 10/15, a +20.0 percentage point gain over a strong single-LLM baseline.",
+    role: "Product engineer — benchmark design, agent workflow, deterministic verifier and evaluation",
+    stack: ["Python", "PostgreSQL", "Docker", "LLM APIs", "Agentic workflow", "Benchmarking"],
+    liveUrl: "https://github.com/pratik16/sql-performance-doctor",
+    problem: [
+      "A language model can sound persuasive when it explains why a SQL query is slow. That is not the same as knowing whether the suggested index will be used, whether a rewrite returns the same rows, or whether PostgreSQL will actually run the query faster.",
+      "The project targeted a real developer workflow: inspect a slow query, read the schema and existing indexes, study `EXPLAIN ANALYZE`, form a hypothesis, test a rewrite or index, verify correctness, measure performance, and retry when the evidence says the idea did not work.",
+      "The baseline was intentionally fair rather than weak. It received the SQL, schema, indexes, execution plan and data-distribution context, then returned one structured recommendation. What it could not do was execute, measure, repair malformed output, or revise its answer after PostgreSQL disagreed.",
+    ],
+    investigation: [
+      "The first step was designing a benchmark that would expose the difference between plausible advice and verified optimisation. The database modelled an e-commerce/order-management system with customers, products, orders, order items, payments, shipments, support tickets and audit logs.",
+      "The full benchmark used realistic data volume: 100,000 customers, 500,000 orders, 1,500,000 order items and 2,000,000 audit logs, with deterministic synthetic generation so results could be reproduced from a clean environment.",
+      "The 15 benchmark cases covered common PostgreSQL traps: functions on indexed columns, missing composite indexes, correlated subqueries, deep offset pagination, low-selectivity index traps, JSONB indexing, `NOT IN` semantics, and sort spills caused by constrained `work_mem`.",
+    ],
+    solution: [
+      "The final architecture kept the agentic loop deliberately small. One optimisation agent produced a structured recommendation, the system repaired malformed structured output once, then executed the candidate inside a controlled PostgreSQL benchmark environment.",
+      "A deterministic verifier judged the answer using database evidence: result equivalence, execution time, plan changes, index usage, and temp-file or disk-spill behaviour. PostgreSQL evidence decided whether a candidate was accepted, not the confidence of the model's explanation.",
+      "When a concrete candidate failed verification, the measured evidence was returned to the optimiser for one final retry. That loop caught cases where an index looked reasonable but PostgreSQL did not use it, then allowed the next candidate to remove the unnecessary schema change and keep the useful rewrite.",
+      "Safety was part of the design. The workflow allowed controlled `SELECT`, `EXPLAIN`, `EXPLAIN ANALYZE`, `CREATE INDEX`, `DROP INDEX` and `SET LOCAL` operations in the benchmark database, while excluding destructive operations from the optimisation path.",
+    ],
+    result: [
+      "On the full PostgreSQL benchmark, the single-LLM baseline passed 7 of 15 cases. SQL Performance Doctor passed 10 of 15, increasing verified optimisation success from 46.7% to 66.7%.",
+      "A repeated medium-profile stability check gave a more conservative view of run-to-run behaviour: the baseline passed 22 of 45 case-runs, while the final workflow passed 26 of 45. That is a +8.9 percentage point improvement, reported without a statistical significance claim.",
+      "The project also produced useful negative evidence. A later experiment that challenged `no_change` conclusions recovered no failures and reduced the score, so it was removed from the final architecture rather than kept for complexity's sake.",
+      "The strongest outcome is not only the score. It is the engineering pattern: wrap AI judgement in deterministic verification, measure it against the system of record, and preserve the evidence needed to explain both successes and failures.",
+    ],
+    metrics: [
+      { value: "7/15 -> 10/15", label: "Full benchmark improvement" },
+      { value: "+20.0 points", label: "Verified success gain" },
+      { value: "45", label: "Medium stability case-runs" },
+    ],
+    featured: true,
+    relatedServices: ["ai-automation", "web-api-development", "software-development"],
   },
   {
     slug: "docker-development-environments",

@@ -8,7 +8,7 @@ import { CtaBand } from "@/components/cta-band";
 export const metadata: Metadata = {
   title: "Software Development Case Studies",
   description:
-    "Selected software engineering work: legacy PHP modernisation with up to 80% API performance gains, data platforms, healthcare systems, and a live multi-model AI platform.",
+    "Selected software engineering work: legacy PHP modernisation with up to 80% API performance gains, AI workflows, data platforms, healthcare systems, and a live multi-model AI platform.",
   alternates: { canonical: "/case-studies" },
 };
 
