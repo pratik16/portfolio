@@ -39,6 +39,29 @@ export type Insight = InsightMeta & {
   html: string;
 };
 
+export type ExternalInsight = {
+  title: string;
+  description: string;
+  date: string;
+  readingTime: string;
+  topics: string[];
+  source: string;
+  href: string;
+};
+
+export const externalInsights: ExternalInsight[] = [
+  {
+    title: "Laravel 8 Events and Listeners With Example",
+    description:
+      "A practical Laravel tutorial showing how to register events and listeners, define the listener logic, and dispatch an event in a small demo application.",
+    date: "2026-02-05",
+    readingTime: "6 min read",
+    topics: ["Laravel", "PHP", "Backend architecture"],
+    source: "Bacancy Technology",
+    href: "https://www.bacancytechnology.com/blog/laravel-8-events-and-listeners",
+  },
+];
+
 function readDir(): string[] {
   try {
     return fs.readdirSync(INSIGHTS_DIR).filter((f) => f.endsWith(".md"));
