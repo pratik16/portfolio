@@ -95,7 +95,7 @@ export const differentiators: Differentiator[] = [
  */
 export const workedWith: string[] = [
   "Squava",
-  "PepsiCo",
+  "Xplain",
   "HN Healthcare",
   "Emxcel Travel Solutions",
   "Gateway Technolabs",

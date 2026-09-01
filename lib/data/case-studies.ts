@@ -75,9 +75,9 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "pepsico-data-platform",
-    name: "PepsiCo",
+    name: "Xplain",
     headline: "Turning scattered social and API data into something a business can read",
-    client: "PepsiCo",
+    client: "Xplain",
     sector: "Consumer goods — data aggregation and reporting",
     duration: "1+ year",
     summary:

@@ -102,9 +102,9 @@ LinkedIn recommendations, so the site stays credible in the meantime. The expect
 is documented in the file.
 
 **"Worked with" uses text, not logos.** `home.ts` lists company names as text wordmarks
-rather than logo images. Reproducing a client's trademark — PepsiCo especially, where the
-work came through Bacancy — implies an endorsement they have not given. It also suits the
-editorial design better. Change it if you decide otherwise.
+rather than logo images. Reproducing a client's trademark can imply an endorsement they
+have not given. It also suits the editorial design better. Change it if you decide
+otherwise.
 
 ---
 

@@ -61,7 +61,7 @@ export const career: CareerEntry[] = [
     period: "2021 — 2024",
     role: "Lead Engineer",
     organisation: "Bacancy Technology",
-    note: "Led delivery on Squava and the PepsiCo data platform. Legacy migration, multi-tenant PostgreSQL, performance optimisation and full end-to-end ownership.",
+    note: "Led delivery on Squava and the Xplain data platform. Legacy migration, multi-tenant PostgreSQL, performance optimisation and full end-to-end ownership.",
   },
   {
     period: "2021",
